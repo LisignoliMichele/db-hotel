@@ -12,7 +12,7 @@ WHERE `document_type` = 'CI';
 
 SELECT *
 FROM `OSPITI`
-WHERE `date_of_birth` > '1988'
+WHERE `date_of_birth` > '1989'
 
 
 
@@ -21,7 +21,7 @@ WHERE `date_of_birth` > '1988'
 
 SELECT *
 FROM `OSPITI`
-WHERE `date_of_birth` < '2001-04-28'
+WHERE (DATEDIFF(NOW(), `date_of_birth`) / 365) >= 21;
 
 
 4) Seleziona tutti gli ospiti il cui nome inizia con la D
@@ -44,5 +44,13 @@ WHERE `status` = 'accepted'
 
 
 6) Qual è il prezzo massimo pagato?
+
+
+SELECT MAX(`price`) AS 'PREZZO MASSIMO PAGATO' 
+FROM `PAGAMENTI`
+WHERE `status` = 'accepted'
+
+
+
 7) Seleziona gli ospiti riconosciuti con patente e nati nel 1975
 8) Quanti posti letto ha l’hotel in totale?
