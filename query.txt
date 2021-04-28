@@ -12,7 +12,7 @@ WHERE `document_type` = 'CI';
 
 SELECT *
 FROM `OSPITI`
-WHERE `date_of_birth` > '1989';
+WHERE `date_of_birth` > '1988-12-31';
 
 
 
@@ -55,8 +55,12 @@ WHERE `status` = 'accepted';
 
 SELECT *
 FROM `OSPITI`
-WHERE `date_of_birth` = '1975' AND `document_type` = 'Driver License'; 
+WHERE (`date_of_birth` > '1975-01-01' AND `date_of_birth` < '1976-01-01') AND `document_type` = 'Driver License'; 
 
 
 
 8) Quanti posti letto ha l’hotel in totale?
+
+SELECT SUM(`beds`) AS "totale posti letto"
+FROM `STANZE`;
+
