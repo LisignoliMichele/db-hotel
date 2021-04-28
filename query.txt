@@ -1,58 +1,25 @@
 1) Seleziona tutti gli ospiti che sono stati identificati con la carta di identità
 
 
-SELECT `name`, `lastname`
+SELECT *
 FROM `ospiti`
 WHERE `document_type` = 'CI';
 
-Elizabeth
-Romaguera
 
-Madie
-Sanford
 
-Lysanne
-Buckridge
-
-Jessie
-Kozey
-
-Shemar
-Keeling
-
-Edwardo
-Pacocha
-
-Jacquelyn
-Ankunding
-
-Willie
-Borer
-
-Kamron
-Murphy
-
-Charley
-Abernathy
-
-Tyrel
-Murphy
-
-Gillian
-Reichel
-
-Briana
-Cartwright
-
-Lamar
-Koch
-
-Lafayette
-Brakus
 
 
 
 2) Seleziona tutti gli ospiti che sono nati dopo il 1988
+
+
+SELECT *
+FROM `OSPITI`
+WHERE `date_of_birth` > '1988'
+
+
+
+
 3) Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query)
 4) Seleziona tutti gli ospiti il cui nome inizia con la D
 5) Calcola il totale degli ordini accepted
