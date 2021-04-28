@@ -12,7 +12,7 @@ WHERE `document_type` = 'CI';
 
 SELECT *
 FROM `OSPITI`
-WHERE `date_of_birth` > '1989'
+WHERE `date_of_birth` > '1989';
 
 
 
@@ -29,7 +29,7 @@ WHERE (DATEDIFF(NOW(), `date_of_birth`) / 365) >= 21;
 
 SELECT *
 FROM `OSPITI`
-WHERE `name` LIKE 'D%'
+WHERE `name` LIKE 'D%';
 
 
 
@@ -38,8 +38,7 @@ WHERE `name` LIKE 'D%'
 
 SELECT SUM(`price`) AS "totale degli ordini accepted"
 FROM `PAGAMENTI`
-WHERE `status` = 'accepted'
-
+WHERE `status` = 'accepted';
 
 
 
@@ -48,9 +47,16 @@ WHERE `status` = 'accepted'
 
 SELECT MAX(`price`) AS 'PREZZO MASSIMO PAGATO' 
 FROM `PAGAMENTI`
-WHERE `status` = 'accepted'
+WHERE `status` = 'accepted';
 
 
 
 7) Seleziona gli ospiti riconosciuti con patente e nati nel 1975
+
+SELECT *
+FROM `OSPITI`
+WHERE `date_of_birth` = '1975' AND `document_type` = 'Driver License'; 
+
+
+
 8) Quanti posti letto ha l’hotel in totale?
