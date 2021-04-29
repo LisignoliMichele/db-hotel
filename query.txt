@@ -41,11 +41,16 @@ SELECT SUM(`beds`) AS "totalePostiLetto" FROM `stanze`;
 GROUP BY
 
 
-
 1) Conta gli ospiti raggruppandoli per anno di nascita
+
 SELECT YEAR(`date_of_birth`) AS 'annoDiNascita', COUNT(`id`) FROM `ospiti` GROUP BY `annoDiNascita` ORDER BY `annoDiNascita` DESC;
 
+
 2) Somma i prezzi dei pagamenti raggruppandoli per status
+
+SELECT SUM(`price`) AS 'somma', status FROM `pagamenti` GROUP BY `status`
+
+
 3) Conta quante volte è stata prenotata ogni stanza
 4) Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti
 5) Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
