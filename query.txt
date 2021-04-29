@@ -1,66 +1,52 @@
 1) Seleziona tutti gli ospiti che sono stati identificati con la carta di identità
 
-
-SELECT *
-FROM `ospiti`
-WHERE `document_type` = 'CI';
-
+SELECT * FROM `ospiti` WHERE `document_type` = 'CI';
 
 
 2) Seleziona tutti gli ospiti che sono nati dopo il 1988
 
-
-SELECT *
-FROM `OSPITI`
-WHERE `date_of_birth` > '1988-12-31';
-
+SELECT * FROM `ospiti` WHERE `date_of_birth` > '1988-12-31';
 
 
 3) Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query)
 
-
-SELECT *
-FROM `OSPITI`
-WHERE `date_of_birth`< NOW() - INTERVAL 20 YEAR;
+SELECT * FROM `ospiti` WHERE `date_of_birth` < NOW() - INTERVAL 20 YEAR;
 
 
 4) Seleziona tutti gli ospiti il cui nome inizia con la D
 
-
-SELECT *
-FROM `OSPITI`
-WHERE `name` LIKE 'D%';
-
+SELECT * FROM `ospiti` WHERE `name` LIKE 'D%';
 
 
 5) Calcola il totale degli ordini accepted
 
-
-SELECT SUM(`price`) AS "totale degli ordini accepted"
-FROM `PAGAMENTI`
-WHERE `status` = 'accepted';
-
+SELECT SUM(`price`) AS "totale_ordini_accepted" FROM `PAGAMENTI` WHERE `status` = 'accepted';
 
 
 6) Qual è il prezzo massimo pagato?
 
-
-SELECT MAX(`price`) AS 'PREZZO MASSIMO PAGATO' 
-FROM `PAGAMENTI`
-WHERE `status` = 'accepted';
-
+SELECT MAX(`price`) AS 'PREZZO_MASSIMO_PAGATO' FROM `pagamenti` WHERE `status` = 'accepted';
 
 
 7) Seleziona gli ospiti riconosciuti con patente e nati nel 1975
 
-SELECT *
-FROM `OSPITI`
-WHERE (`date_of_birth` > '1975-01-01' AND `date_of_birth` < '1976-01-01') AND `document_type` = 'Driver License'; 
-
+SELECT * FROM `ospiti` WHERE YEAR(`date_of_birth`) = 1975 AND `document_type` = 'Driver License';  
 
 
 8) Quanti posti letto ha l’hotel in totale?
 
-SELECT SUM(`beds`) AS "totale posti letto"
-FROM `STANZE`;
+SELECT SUM(`beds`) AS "totalePostiLetto" FROM `stanze`;
+
+
+GROUP BY
+
+
+
+1) Conta gli ospiti raggruppandoli per anno di nascita
+SELECT YEAR(`date_of_birth`) AS 'annoDiNascita', COUNT(`id`) FROM `ospiti` GROUP BY `annoDiNascita` ORDER BY `annoDiNascita` DESC;
+
+2) Somma i prezzi dei pagamenti raggruppandoli per status
+3) Conta quante volte è stata prenotata ogni stanza
+4) Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti
+5) Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
 
