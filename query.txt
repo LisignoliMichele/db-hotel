@@ -83,11 +83,14 @@ HAVING COUNT(`prenotazioni_has_ospiti`.`ospite_id`) >= 2
 
 2) Stampare tutti gli ospiti per ogni prenotazione
 
-SELECT `ospiti`.`name` , `ospiti`.`lastname` , `prenotazioni_has_ospiti`.`ospite_id`, COUNT(`prenotazioni_has_ospiti`.`ospite_id`) AS 'numeroPrenotazioni' 
-FROM `prenotazioni_has_ospiti` 
-INNER JOIN `ospiti`
+SELECT `ospiti`.`name` , `ospiti`.`lastname`, `prenotazioni`.`id` AS 'prenotazione_ID'
+FROM `prenotazioni`
+LEFT JOIN `prenotazioni_has_ospiti`
+ON `prenotazioni`.`id` = `prenotazioni_has_ospiti`.`prenotazione_id`
+LEFT JOIN `ospiti`
 ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`
-GROUP BY `ospite_id`
+ORDER BY `prenotazione_ID` DESC
+
 
 3) Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
 
@@ -114,5 +117,20 @@ ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
 WHERE `floor` = 1
 
 5) Prendi i dati di fatturazione per la prenotazione con id=7
+
+SELECT `prenotazioni`.`id` AS 'PRENOTAZIONI_ID' , `configurazioni`.`title` , `pagamenti`.`status` , `pagamenti`.`price` , `paganti`.`name` AS 'fattura_per' , `paganti`.`lastname`
+FROM `prenotazioni`
+INNER JOIN `pagamenti`
+ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
+INNER JOIN `configurazioni`
+ON `prenotazioni`.`configurazione_id` = `configurazioni`.`id`
+INNER JOIN `paganti`
+
+
 6) Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate) 
 
+SELECT *
+FROM `stanze`
+LEFT JOIN `prenotazioni`
+ON  `stanze`.`id` = `prenotazioni`.`stanza_id`
+WHERE `prenotazioni`.`stanza_id` IS NULL
