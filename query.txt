@@ -21,7 +21,7 @@ WHERE `date_of_birth` > '1988-12-31';
 
 SELECT *
 FROM `OSPITI`
-WHERE (DATEDIFF(NOW(), `date_of_birth`) / 365) >= 21;
+WHERE `date_of_birth`< NOW() - INTERVAL 20 YEAR;
 
 
 4) Seleziona tutti gli ospiti il cui nome inizia con la D
